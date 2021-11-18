@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Partner</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button autoHide="false"></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+    <ion-list>
+        <ion-reorder-group (ionItemReorder)="onRenderItems($event)" disabled="false">
+            <ion-item-sliding #slidingItem *ngFor="let partner of partnerList;let i=index;">
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <img [src]="partner.partnerImageUrl ? partner.partnerImageUrl : 'assets/Not-Found.png'" id="partnerImageUrl"/>
+                    </ion-avatar>
+                    <ion-label>
+                        <h2>{{partner.partnerName}}</h2>
+                        <h3>Speed: {{partner.transferSpeed}}</h3>
+                        <p>PShare: {{partner.partnerShare}}</p>
+                        <p>FMShare: {{partner.forexMarginShare}}</p>
+                    </ion-label>
+                    <ion-reorder></ion-reorder>
+                </ion-item>
+                <ion-item-options side="end">
+                    <ion-item-option (click)="deletePartner(i, partner);slidingItem.close()" color="danger">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </ion-item-option>
+                    <ion-item-option (click)="editPartner(partner);slidingItem.close()" color="success">
+                        <ion-icon name="create-outline"></ion-icon>
+                    </ion-item-option>
+                    <ion-item-option (click)="viewPartner(partner);slidingItem.close()" color="dark">
+                        <ion-icon name="eye-outline"></ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-reorder-group>
+    </ion-list>
+</ion-content>

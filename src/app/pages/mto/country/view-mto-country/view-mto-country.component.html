@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>View Partner Country</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="country">
+    <ion-item id="countryCityId" [routerLink]="['/app-mto-city']"
+        [queryParams]="{
+            partnerId: partnerId,
+            countryCode: country.countryCode
+        }">
+        <ion-avatar slot="start">
+            <img src="assets/city.png" id="countryImageUrl" />
+        </ion-avatar>
+        <ion-label>
+            {{partnerId}}-{{country.countryCode}}-City
+        </ion-label>
+    </ion-item>
+    <ion-item id="countryBankId" [routerLink]="['/app-mto-bank']"
+        [queryParams]="{
+            partnerId: partnerId,
+            countryCode: country.countryCode
+        }">
+        <ion-avatar slot="start">
+            <img src="assets/bank.png" id="countryImageUrl" />
+        </ion-avatar>
+        <ion-label>
+            {{partnerId}}-{{country.countryCode}}-Bank
+        </ion-label>
+    </ion-item>
+    <ion-item id="countryWalletId" [routerLink]="['/app-mto-wallet']"
+        [queryParams]="{
+            partnerId: partnerId,
+            countryCode: country.countryCode
+        }">
+        <ion-avatar slot="start">
+            <img src="assets/wallet.png" id="countryImageUrl" />
+        </ion-avatar>
+        <ion-label>
+            {{partnerId}}-{{country.countryCode}}-Wallet
+        </ion-label>
+    </ion-item>
+</ion-content>

@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Add Mto Bank</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="attachMtoBankWithMtoPartnerForm" (ngSubmit)="attachMtoBankWithMtoPartner(attachMtoBankWithMtoPartnerForm.value)" >
+        <ion-item id="partner">
+            <ion-label position="stacked" color="medium">Partner</ion-label>
+            <ion-input *ngIf="partner" type="text" class="form-control" name="partner" formControlName="partnerId" disabled>
+                {{partner.partnerName}}-
+            </ion-input> 
+            <ion-img *ngIf="partner" slot="end" src="{{partner.partnerImageUrl}}" style="width: 40px;margin-top: 8px;"></ion-img>
+        </ion-item>
+        <ion-item id="country">
+            <ion-label position="stacked" color="medium">Country</ion-label>
+            <ion-input *ngIf="country" type="text" class="form-control" name="country" formControlName="country" disabled>
+                {{country.countryName}}-
+            </ion-input> 
+            <ion-img *ngIf="country" slot="end" src="{{country.countryImageUrl}}" style="width: 40px;margin-top: 8px;"></ion-img>
+        </ion-item>
+        <ion-item id="bank" *ngIf="bankList">
+                <ion-label position="stacked" color="medium">Bank</ion-label>
+                <ion-select (click)="loadFlags()" name="bank" formControlName="bank">
+                    <ion-select-option *ngFor="let bank of bankList" [value]="bank">
+                        {{bank.bankName}}
+                    </ion-select-option>
+                </ion-select>
+        </ion-item>
+        <ion-button class="submit-button" type="submit" expand="block" [disabled]="attachMtoBankWithMtoPartnerForm?.invalid">Submit</ion-button>
+    </form>
+</ion-content>

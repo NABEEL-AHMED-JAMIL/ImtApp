@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Edit Product</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="productForm" (ngSubmit)="updateProduct(productForm.value)"  #uploadDocumentsForm="ngForm" ngNativeValidate>
+        <div class="img-wrapper" *ngIf="productImageFile">
+            <img [src]="productImageFile.link ? productImageFile.link : 'assets/Not-Found.png'" id="productImageUrl"/>
+            <!-- <ion-button *ngIf="productImageFile.link" color="light" onclick="document.querySelector('#exampleInputFile').click()">
+                <ion-icon slot="icon-only" name="camera-outline" color="medium"></ion-icon>
+            </ion-button>
+            <input type="file" id="exampleInputFile" (change)="imagesPreview($event)" accept="image/png, image/gif, image/jpeg" style="display: none;"> -->
+        </div>
+        <ion-item class="ion-item-1" id="productId">
+            <ion-label position="stacked" color="medium">#No</ion-label>
+            <ion-input type="text" class="form-control" name="productId" formControlName="productId" disabled></ion-input>
+            <ion-toggle formControlName="enabled" id="enabled" color="dark" slot="end" style="margin-top: auto;"></ion-toggle>
+        </ion-item>
+        <ion-item class="ion-item-2" id="productName">
+            <ion-label position="stacked" color="medium">Name</ion-label>
+            <ion-input type="text" class="form-control" name="productName" formControlName="productName"></ion-input>
+        </ion-item>
+        <!-- <div *ngIf="productName.invalid && (productName.dirty || productName.touched)" class="alert">
+            <div *ngIf="productName.errors?.['required']">Name is required.</div>
+            <div *ngIf="productName.errors?.['minlength']">Name must be at least 5 characters long.</div>
+            <div *ngIf="productName.errors?.['maxlength']">Name max 25 characters long.</div>
+        </div -->
+        <ion-button class="submit-button" type="submit" expand="block" [disabled]="productForm?.invalid">Submit</ion-button>
+    </form>
+</ion-content>

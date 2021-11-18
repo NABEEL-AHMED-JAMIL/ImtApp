@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>View City</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="countryCitys">
+    <ion-item>
+        <ion-avatar slot="start">
+            <img src="{{countryCitys.countryImageUrl}}" id="countryImageUrl" />
+        </ion-avatar>
+        <ion-searchbar class="ion-item-1" placeholder="Search City"
+            [(ngModel)]="query" id="listSearch" debounce="500" mode="ios">
+        </ion-searchbar>
+    </ion-item>
+    <ion-list>
+        <ion-item-sliding #slidingItem *ngFor="let city of countryCitys.cities | searchFilter: query;let i=index;">
+            <ion-item>
+                <ion-label>{{city.cityName}}</ion-label>
+                <ion-toggle [checked]="city.enabled === 'Y' ? true: false"
+                    (ionChange)="enableDisableCity(i, $event.detail.checked, city)"
+                    color="dark" slot="end">
+                </ion-toggle>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option (click)="updateCity(city);slidingItem.close()" color="dark">
+                    <ion-icon name="create-outline"></ion-icon>
+                </ion-item-option>
+                <ion-item-option (click)="deleteCity(i, city);slidingItem.close()" color="danger">
+                    <ion-icon name="trash-outline"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="warning" (click)="addCity();">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

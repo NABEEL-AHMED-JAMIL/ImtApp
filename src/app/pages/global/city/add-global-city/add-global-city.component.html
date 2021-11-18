@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Add City</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="cityForm" (ngSubmit)="createCity(cityForm.value)" >
+        <ion-item id="country">
+            <ion-label position="stacked" color="medium">Country</ion-label>
+            <ion-input type="text" class="form-control" name="country" formControlName="country" disabled></ion-input> 
+            <ion-img *ngIf="cityImageFile" slot="end" src="{{cityImageFile.link}}"></ion-img>
+             &nbsp;
+            <ion-toggle formControlName="enabled" id="enabled" color="dark" slot="end"></ion-toggle>
+        </ion-item>
+        <ion-item id="cityName">
+            <ion-label position="stacked" color="medium">City Name</ion-label>
+            <ion-input type="text" class="form-control" name="cityName" formControlName="cityName"></ion-input>
+        </ion-item>
+        <ion-label *ngIf="cityForm.get('cityName').hasError('required') && (cityForm.get('cityName').touched || submitted)"
+            color="danger" class="error-lable">
+            City name required
+        </ion-label>
+        <ion-button class="submit-button" type="submit" expand="block" [disabled]="cityForm?.invalid">Submit</ion-button>
+    </form>      
+</ion-content>

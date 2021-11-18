@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>View Partner</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="partner">
+    <div class="img-wrapper" *ngIf="partnerImageFile">
+        <img [src]="partnerImageFile.link ? partnerImageFile.link : 'assets/Not-Found.png'" id="partnerImageUrl"/>
+    </div>
+    <ion-item class="ion-item-1" id="partnerId">
+        <ion-label position="stacked" color="dark">#No</ion-label>
+        <ion-input type="text" class="form-control" name="partnerId" value="{{partner.partnerId}}"></ion-input>
+        <ion-toggle [checked]="partner.enabled === 'Y' ? true: false"
+            (ionChange)="enableDisablePartner($event.detail.checked, partner)"
+            color="dark" slot="end">
+        </ion-toggle>
+    </ion-item>
+    <ion-item id="partnerName">
+        <ion-label position="stacked" color="dark">Name</ion-label>
+        <ion-input type="text" class="form-control" name="partnerName" value="{{partner.partnerName}}" ></ion-input>
+    </ion-item>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="4">
+                <ion-item id="preferenceOrder">
+                    <ion-label position="stacked" color="dark">Order</ion-label>
+                    <ion-input type="text" class="form-control" name="preferenceOrder" value="{{partner.preferenceOrder}}" ></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col size="8">
+                <ion-item id="forexMarginShare">
+                    <ion-label position="stacked" color="dark">FM&PT Share</ion-label>
+                    <ion-input type="text" class="form-control" name="forexMarginShare" value="{{partner.forexMarginShare}} - {{partner.partnerShare}}" ></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>        
+    </ion-grid>
+    <ion-item id="transferSpeed">
+        <ion-label position="stacked" color="dark">Transfer Speed</ion-label>
+        <ion-input type="text" class="form-control" name="transferSpeed" value="{{partner.transferSpeed}}" ></ion-input>
+    </ion-item>
+    <ion-item id="partnerCategory">
+        <ion-label position="stacked" color="dark">Partner Category</ion-label>
+        <ion-input type="text" class="form-control" name="partnerCategory" value="{{partner.partnerCategory}}" ></ion-input>
+    </ion-item>
+    <ion-item id="partnerTxtIdLabel">
+        <ion-label position="stacked" color="dark">Partner Txt Id</ion-label>
+        <ion-input type="text" class="form-control" name="partnerTxtIdLabel" value="{{partner.partnerTxtIdLabel}}" ></ion-input>
+    </ion-item>
+    <ion-button class="submit-button" expand="block" (click)="findMtoCountryByMtoPartnerId(partner);">
+        View Link Country <ion-icon name="location-outline"></ion-icon>
+    </ion-button>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "ImtApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

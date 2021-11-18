@@ -1,0 +1,77 @@
+.img-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    transform: translateX(-50%);
+    img {
+        border-radius: 80px;
+        width: 136px;
+        height: 130px;
+    }
+    ion-button {
+        --border-width: 1px;
+        --border-color: var(--ion-color-light-shade);
+        --border-style: solid;
+        --padding-start: 0;
+        --padding-end: 0;
+        --padding-bottom: 0;
+        --padding-top: 0;
+        --border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        right: 5px;
+        bottom: 8px;
+        ion-icon {
+            width: 14px;
+            height: 14px;
+        }
+    }
+}
+
+.submit-button {
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 20px;
+}
+
+
+.ion-item-1 {
+    margin-top: 150px;
+}
+
+.ion-item-2 {
+    margin-top: 15px;    
+}
+
+.error-lable {
+    margin-left: 14px;
+    font-family: auto;
+}
+
+ion-img {
+    width: 50px;
+    margin-top: 20px;
+}
+
+ion-toggle {
+    margin-top: 15px;
+}
+
+.alert-ios .alert-radio-label{
+    white-space: pre-line;
+}
+    
+.alert-md .alert-radio-label{
+    white-space: pre-line;
+}
+    
+.alert-wp .alert-radio-label{
+    white-space: pre-line;
+}
+
+.submit-button {
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 20px;
+}

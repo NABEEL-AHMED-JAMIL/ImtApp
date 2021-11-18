@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Add Mto Country</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="attachMtoCityWithMtoPartnerForm" (ngSubmit)="attachMtoCityWithMtoPartner(attachMtoCityWithMtoPartnerForm.value)" >
+        <ion-item id="partner">
+            <ion-label position="stacked" color="medium">Partner</ion-label>
+            <ion-input *ngIf="partner" type="text" class="form-control" name="partner" formControlName="partnerId" disabled>
+                {{partner.partnerName}}-
+            </ion-input> 
+            <ion-img *ngIf="partner" slot="end" src="{{partner.partnerImageUrl}}" style="width: 40px;margin-top: 8px;"></ion-img>
+        </ion-item>
+        <ion-item id="country">
+            <ion-label position="stacked" color="medium">Country</ion-label>
+            <ion-input *ngIf="country" type="text" class="form-control" name="country" formControlName="country" disabled>
+                {{country.countryName}}-
+            </ion-input> 
+            <ion-img *ngIf="country" slot="end" src="{{country.countryImageUrl}}" style="width: 40px;margin-top: 8px;"></ion-img>
+        </ion-item>
+        <ion-item id="city" *ngIf="cityList">
+            <ion-label position="stacked" color="medium">City</ion-label>
+            <ion-select name="city" formControlName="city">
+                <ion-select-option *ngFor="let city of cityList" [value]="city">
+                    {{city.cityName}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-button class="submit-button" type="submit" expand="block" [disabled]="attachMtoCityWithMtoPartnerForm?.invalid">Submit</ion-button>
+    </form>
+</ion-content>

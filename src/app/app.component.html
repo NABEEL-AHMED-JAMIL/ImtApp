@@ -1,0 +1,36 @@
+<ion-app>
+    <ion-menu side="start" menuId="custom" contentId="main-content" class="my-custom-menu">
+        <ion-header>
+          <ion-toolbar color="primary">
+            <div class="img-wrapper">
+                <img src="assets/download.jpg" id="userImageUrl"/>
+                <ion-button color="light" onclick="document.querySelector('#editProfileFile').click()">
+                    <ion-icon slot="icon-only" name="camera-outline" color="medium"></ion-icon>
+                </ion-button>
+                <input type="file" id="editProfileFile" (change)="imagesPreview($event)" accept="image/png, image/gif, image/jpeg" style="display: none;">
+            </div>
+            <ion-title>Nabeel Ahmed</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <ion-list style="padding-top: 0px;padding-bottom: 0px;">
+            <ion-item class="ion-activatable ripple-parent" [routerLink]="['/app-global-product']">
+              <ion-icon name="cube-outline"></ion-icon>&nbsp;Global Product
+            </ion-item>
+            <ion-item class="ion-activatable ripple-parent" [routerLink]="['/app-global-country']">
+              <ion-icon name="earth-outline"></ion-icon>&nbsp;Global Country
+            </ion-item>
+            <ion-item class="ion-activatable ripple-parent" [routerLink]="['/app-mto-partner']">
+              <ion-icon name="people-outline"></ion-icon>&nbsp;Mto Partner
+            </ion-item>
+            <ion-item class="ion-activatable ripple-parent" [routerLink]="['/app-mto-partner-customer']">
+              <ion-icon name="bicycle-outline"></ion-icon>&nbsp;Mto Partner Customer
+            </ion-item>
+            <ion-item class="ion-activatable ripple-parent">
+              <ion-icon name="log-out-outline"></ion-icon>&nbsp;Logout
+            </ion-item>
+          </ion-list>
+        </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-app>

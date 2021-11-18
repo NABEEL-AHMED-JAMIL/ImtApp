@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>View Partner Country</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-searchbar placeholder="Search Country" debounce="500" mode="ios" [(ngModel)]="query" id="listSearch"></ion-searchbar>
+    <ion-list>
+        <ion-item-sliding #slidingItem *ngFor="let country of mtoPartnerCountryList | searchFilter: query;let i=index;">
+            <ion-item>
+                <ion-img src="{{country.countryImageUrl}}"></ion-img>
+                &nbsp;
+                <ion-label>{{country.countryName}}</ion-label>
+                <ion-icon name="trash-outline" slot="end" color="danger"
+                    (click)="deleteMtoCountryLinkMtoPartner(i, country)"></ion-icon>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option (click)="viewCountryDetail(country);slidingItem.close()" color="dark">
+                    View
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="warning" (click)="attachMtoCountryWithMtoPartner();">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

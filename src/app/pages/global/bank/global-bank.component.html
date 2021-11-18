@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>View Bank</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="countryBanks">
+    <ion-item>
+        <ion-avatar slot="start">
+            <img src="{{countryBanks.countryImageUrl}}" id="countryImageUrl" />
+        </ion-avatar>
+        <ion-searchbar class="ion-item-1" placeholder="Search Bank"
+            [(ngModel)]="query" id="listSearch" debounce="500" mode="ios">
+        </ion-searchbar>
+    </ion-item>
+    <ion-list>
+        <ion-item-sliding #slidingItem *ngFor="let bank of countryBanks.banks | searchFilter: query;let i=index;">
+            <ion-item>
+                <ion-avatar slot="start">
+                    <img [src]="bank.bankImageUrl ? bank.bankImageUrl : 'assets/Not-Found.png'" id="bankImageUrl" />
+                </ion-avatar>
+                &nbsp;
+                <ion-label>{{bank.bankName}}</ion-label>
+                <ion-toggle [checked]="bank.enabled === 'Y' ? true: false"
+                    (ionChange)="enableDisableBank(i, $event.detail.checked, bank)"
+                    color="dark" slot="end">
+                </ion-toggle>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option (click)="editBankDetail(bank);slidingItem.close()" color="dark">
+                    <ion-icon name="create-outline"></ion-icon>
+                </ion-item-option>
+                <ion-item-option (click)="deleteBank(i, bank);slidingItem.close()" color="danger">
+                    <ion-icon name="trash-outline"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="warning" (click)="addBank();">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

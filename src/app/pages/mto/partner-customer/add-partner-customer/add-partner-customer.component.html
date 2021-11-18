@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Add Partner Customer</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="partnerCustomerForm" (ngSubmit)="createCustomerMsisdn(partnerCustomerForm.value)" *ngIf="this.customerMsdinForms.length !== 0" >
+        <ion-card *ngFor="let cmsdin of partnerCustomerForm.get('customerMsdin')['controls']; let i = index;" [formGroup]="cmsdin">
+            <ion-item>
+                <ion-label>Item-{{i}}</ion-label>
+                <ion-button fill="outline" slot="end" (click)="customerMsdinRemoveItem(i)">
+                    <ion-icon name="close-circle-outline"></ion-icon>
+                </ion-button>
+            </ion-item>
+            <ion-card-content>
+                <ion-item id="partnerId">
+                    <ion-label position="stacked" color="medium">Partner</ion-label>
+                    <ion-select (click)="loadFlags()" name="partnerId" formControlName="partnerId">
+                        <ion-select-option *ngFor="let partner of partnerList" [value]="partner.partnerId">
+                            {{partner.partnerName}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item id="customerNumber">
+                    <ion-label position="stacked" color="medium">Customer Number</ion-label>
+                    <ion-input type="text" class="form-control"
+                        name="customerNumber" formControlName="customerNumber"
+                        pattern="^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$"></ion-input>
+                </ion-item>
+            </ion-card-content>
+        </ion-card>
+        <ion-button class="submit-button" type="submit" expand="block" [disabled]="partnerCustomerForm?.invalid">Submit</ion-button>
+    </form>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="warning" (click)="customerMsdinAddItem();">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

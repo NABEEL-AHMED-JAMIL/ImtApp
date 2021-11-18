@@ -1,0 +1,36 @@
+.img-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    transform: translateX(-50%);
+    img {
+        border-radius: 80px;
+        width: 136px;
+        height: 130px;
+    }
+}
+
+ion-item {
+    --highlight-color-focused: #010101;
+    --highlight-color-valid: var(--ion-color-success, #2dd36f);
+    --highlight-color-invalid: var(--ion-color-danger, #eb445a);
+}
+
+ion-input {
+    font-family:verdana
+}
+
+.ion-item-1 {
+    margin-top: 150px;
+}
+
+.ion-item-2 {
+    margin-top: 15px;    
+}
+
+.submit-button {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}

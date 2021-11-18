@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Edit Partner</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="partnerForm" (ngSubmit)="updateMtoPartner(partnerForm.value)" >
+        <div class="img-wrapper" *ngIf="partnerImageFile">
+            <img [src]="partnerImageFile.link" id="partnerImageUrl"/>
+            <ion-button color="light" onclick="document.querySelector('#exampleInputFile').click()">
+                <ion-icon slot="icon-only" name="camera-outline" color="medium"></ion-icon>
+            </ion-button>
+            <input type="file" id="exampleInputFile" (change)="imagesPreview($event)" accept="image/png, image/gif, image/jpeg" style="display: none;">
+        </div>
+        <ion-item class="ion-item-1" id="partnerName">
+            <ion-label position="stacked" color="medium">Partner Name</ion-label>
+            <ion-input type="text" class="form-control" name="partnerName" formControlName="partnerName"></ion-input> 
+            &nbsp;
+            <ion-toggle formControlName="enabled" id="enabled" color="dark" slot="end"></ion-toggle>
+        </ion-item>
+        <ion-grid>
+            <ion-row>
+                <ion-col size="6">
+                    <ion-item id="forexMarginShare">
+                        <ion-label position="stacked" color="dark">Forex Margin Share</ion-label>
+                        <ion-input type="number" class="form-control" name="forexMarginShare" formControlName="forexMarginShare" ></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item id="partnerShare">
+                        <ion-label position="stacked" color="dark">Partner Share</ion-label>
+                        <ion-input type="number" class="form-control" name="partnerShare" formControlName="partnerShare"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-item  id="partnerTxtIdLabel">
+            <ion-label position="stacked" color="dark">Partner TxtId</ion-label>
+            <ion-input type="number" class="form-control" name="partnerTxtIdLabel" formControlName="partnerTxtIdLabel"></ion-input>
+        </ion-item>
+        <ion-item  id="transferSpeed">
+            <ion-label position="stacked" color="dark">Transfer Speed</ion-label>
+            <ion-select name="transferSpeed" formControlName="transferSpeed">
+                <ion-select-option *ngFor="let tf of transferSpeed" [value]="tf.value">{{tf.key}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item id="partnerCategory">
+            <ion-label position="stacked" color="dark">Partner Category</ion-label>
+            <ion-select name="partnerCategory" formControlName="partnerCategory">
+                <ion-select-option *ngFor="let mtc of mtoCategory" [value]="mtc.value">{{mtc.key}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-button class="submit-button" type="submit" expand="block" [disabled]="partnerForm?.invalid">Submit</ion-button>
+    </form>
+</ion-content>
