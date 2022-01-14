@@ -41,6 +41,7 @@ import { AddMtoWalletComponent } from '../app/pages/mto/wallet/add-mto-wallet/ad
 import { MtoPartnerCustomerComponent } from '../app/pages/mto/partner-customer/mto-partner-customer.component';
 import { AddMtoPartnerCustomerComponent } from '../app/pages/mto/partner-customer/add-partner-customer/add-partner-customer.component';
 import { MtoPartnerCountryProductComponent } from '../app/pages/mto/partner-country-product/mto-partner-country-product.component';
+import { ReportComponent } from '../app/pages/mto/report/report.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
@@ -77,6 +78,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     MtoWalletComponent,
     AddMtoWalletComponent,
     MtoPartnerCountryProductComponent,
+    ReportComponent,
     MtoPartnerCustomerComponent,
     AddMtoPartnerCustomerComponent
   ],
